@@ -114,34 +114,6 @@ public class GameBoard : MonoBehaviour
         if (!_multiplayer) return;
         GUI.Label(new Rect(10, 10, 200, 20), $"First Player Score: {firstPlayerScore.ToString()}");
         GUI.Label(new Rect(200, 10, 200, 20), $"Second Player Score: {secondPlayerScore.ToString()}");
-        if (Input.GetKeyDown(KeyCode.S) || _aliveCells.Count == 0)
-        {
-            StopGame();
-        }
-    }
-
-    private void StopGame()
-    {
-        _freezed = true;
-        if (!_multiplayer) return;
-        var texture = new Texture2D(1, 1);
-        texture.SetPixel(0,0,Color.gray);
-        texture.Apply();
-        GUI.skin.box.normal.background = texture;
-        GUI.Box(new Rect(0, 0, 1920, 1080), GUIContent.none);
-        if (firstPlayerScore > secondPlayerScore)
-        {
-            GUI.Label(new Rect(0, 0, 1920, 1080), $"First player wins!");
-        }
-        else if (firstPlayerScore < secondPlayerScore)
-        {
-            GUI.Label(new Rect(0, 0, 1920, 1080), $"Second player wins!");
-        }
-        else
-        {
-            GUI.Label(new Rect(0, 0, 1920, 1080), $"Draw!");
-        }
-        StopAllCoroutines();
     }
     
     private void start_random()
